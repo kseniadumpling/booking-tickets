@@ -1,0 +1,139 @@
+{
+  "movieList": [
+    {
+      "id": "1",
+      "name": "Tuxtanic",
+      "genre": "Drama",
+      "description": "A young bird falls in love with a kind but poor penguin aboard the luxurious ship",
+      "imgURL": "/img/tuxtanic.png",
+      "sessions": [
+        {
+          "availableTickets": "15",
+          "date": "08/29/2019",
+          "time": "12:00"
+        },
+        {
+          "availableTickets": "2",
+          "date": "09/01/2019",
+          "time": "13:00"
+        },
+        {
+          "availableTickets": "0",
+          "date": "09/01/2019",
+          "time": "13:30"
+        },
+
+        {
+          "availableTickets": "12",
+          "date": "09/01/2019",
+          "time": "18:30"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "How to Train Your Penguin",
+      "genre": "Animation",
+      "description": "A hapless young Viking who aspires to hunt penguins becomes the unlikely friend of a young penguin himself",
+      "imgURL": "/img/httyp.png",
+      "sessions": [
+        {
+          "availableTickets": "9",
+          "date": "08/30/2019",
+          "time": "15:00"
+        },
+        {
+          "availableTickets": "3",
+          "date": "09/01/2019",
+          "time": "14:00"
+        },
+        {
+          "availableTickets": "7",
+          "date": "09/03/2019",
+          "time": "10:30"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Tuxminator 2: Judgment Day",
+      "genre": "Action",
+      "description": "A cyborg, identical to the one who failed to kill Sarah Connor, must now protect her teenage son, John Connor",
+      "imgURL": "/img/tuxminator.png",
+      "sessions": [
+        {
+          "availableTickets": "20",
+          "date": "09/02/2019",
+          "time": "18:00"
+        },
+        {
+          "availableTickets": "20",
+          "date": "09/03/2019",
+          "time": "18:30"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "The Tuxfather",
+      "genre": "Drama",
+      "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son",
+      "imgURL": "/img/tuxfather.png",
+      "sessions": [
+        {
+          "availableTickets": "8",
+          "date": "08/31/2019",
+          "time": "23:20"
+        },
+        {
+          "availableTickets": "3",
+          "date": "09/01/2019",
+          "time": "20:00"
+        },
+        {
+          "availableTickets": "7",
+          "date": "09/02/2019",
+          "time": "19:30"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Tux Wars: Episode V",
+      "genre": "Action",
+      "description": "After the Rebels are brutally overpowered by the Empire, Linus Foldwalker begins concurrent training with Yoda, while his friends are pursued by Darth Window",
+      "imgURL": "/img/tuxwars.png",
+      "sessions": [
+        {
+          "availableTickets": "5",
+          "date": "08/30/2019",
+          "time": "12:00"
+        },
+        {
+          "availableTickets": "10",
+          "date": "09/01/2019",
+          "time": "13:00"
+        },
+        {
+          "availableTickets": "7",
+          "date": "09/04/2019",
+          "time": "13:30"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "The Tuxing",
+      "genre": "Horror",
+      "description": "A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence",
+      "imgURL": "/img/tuxing.png",
+      "sessions": [
+        {
+          "availableTickets": "3",
+          "date": "09/01/2019",
+          "time": "22:40"
+        }
+      ]
+    }
+  ]
+}
