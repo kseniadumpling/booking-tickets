@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "545eb71ed286a02e59bc2383621e4fa1",
+    "revision": "1a58ce45883a23bfd099a85a781c79ab",
     "url": "/booking-tickets/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booking-tickets/static/css/2.ff9ea1f9.chunk.css"
   },
   {
-    "revision": "85a9113a0a5ef2827d72",
+    "revision": "d18d0136e0f042479168",
     "url": "/booking-tickets/static/css/main.b04db430.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booking-tickets/static/js/2.c4e96db6.chunk.js"
   },
   {
-    "revision": "85a9113a0a5ef2827d72",
-    "url": "/booking-tickets/static/js/main.2bbddb84.chunk.js"
+    "revision": "d18d0136e0f042479168",
+    "url": "/booking-tickets/static/js/main.0964d78b.chunk.js"
   },
   {
     "revision": "04c37a43306aa88a42f8",
