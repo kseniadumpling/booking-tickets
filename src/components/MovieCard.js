@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Media from "react-bootstrap/Media";
 import BookingCard from "./BookingCard";
 import Row from "react-bootstrap/Row";
-import './MovieCard.css';
+import Col from "react-bootstrap/Col";
 
 
 class MovieCard extends Component {
@@ -27,17 +27,17 @@ class MovieCard extends Component {
 				/>
 				<Media.Body>
 					<Row>
-						<div className="col-7">
+						<Col md="7" sm="12">
 							<h5>{this.props.data.name}</h5>
 							<h6>{this.props.data.genre}</h6>
 							<p>{this.props.data.description}</p>
-						</div>
-						<div className="col-3">
+						</Col>
+						<Col md="3" sm="6" className="text-center my-auto">
 							{MovieCard.getTimetable(sessions)}
-						</div>
-						<div className="col-2">
+						</Col>
+						<Col md="2" sm="6" className="text-center my-auto">
 							<BookingCard data={this.props.data} sessions={sessions}/>
-						</div>
+						</Col>
 					</Row>
 				</Media.Body>
 			</Media>

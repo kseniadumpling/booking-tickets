@@ -1,3 +1,11 @@
 p {
     margin-bottom: 8px;
 }
+
+.has-error {
+    border: 1px solid red;
+}
+
+.bg-gray-light {
+    background-color: #fbfbfb;
+}

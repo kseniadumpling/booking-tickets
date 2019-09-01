@@ -1,21 +1,17 @@
 import React, {Component} from 'react';
 import MovieList from './components/MovieList';
 import DemoList from './demo/demoList.json';
-import './AppPage.css';
-
-
-
-
+import Container from "react-bootstrap/Container";
 
 class AppPage extends Component {
     render() {
         return (
-            <div className="container pt-5">
+            <Container className="pt-5">
                 <h2 className="text-center">Book Your Tickets</h2>
                 <MovieList data={DemoList.movieList}/>
-            </div>
+            </Container>
         );
     }
 }
 
-export default AppPage; // TODO: google this!!!
+export default AppPage;

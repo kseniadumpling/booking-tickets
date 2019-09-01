@@ -38,6 +38,11 @@
       "imgURL": "/img/httyp.png",
       "sessions": [
         {
+          "availableTickets": "3",
+          "date": "08/30/2019",
+          "time": "11:00"
+        },
+        {
           "availableTickets": "9",
           "date": "08/30/2019",
           "time": "15:00"
@@ -89,6 +94,11 @@
           "availableTickets": "3",
           "date": "09/01/2019",
           "time": "20:00"
+        },
+        {
+          "availableTickets": "3",
+          "date": "09/01/2019",
+          "time": "21:00"
         },
         {
           "availableTickets": "7",

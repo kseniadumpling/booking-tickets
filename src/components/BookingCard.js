@@ -5,6 +5,9 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import Form from "react-bootstrap/Form";
 import './BookingCard.css';
+import Col from "react-bootstrap/Col";
+import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
+import ToggleButton from "react-bootstrap/ToggleButton";
 
 class BookingCard extends Component {
 	constructor(props) {
@@ -20,10 +23,8 @@ class BookingCard extends Component {
 			nameValid: false,
 			phoneValid: false,
 			formValid: false
-
 		};
 		this.handleShowModal = this.handleShowModal.bind(this);
-		this.handleUserInput = this.handleUserInput.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleCancel = this.handleCancel.bind(this);
 
@@ -36,7 +37,6 @@ class BookingCard extends Component {
 		});
 	}
 
-
 	handleSessionSelection(time, tickets) {
 		this.setState({
 			time: time,
@@ -44,45 +44,23 @@ class BookingCard extends Component {
 		});
 	}
 
+	handleSubmit() {
+		console.log(this.setOutput());
+		this.dropStates();
+	};
+
+	handleCancel() {
+		this.dropStates();
+	}
+
 	handleUserInput = (e) => {
 		const name = e.target.name;
 		const value = e.target.value;
-		this.setState({
-			[name]: value},
+		this.setState(
+			{[name]: value },
 			() => { this.validateField(name, value)}
 		);
 	};
-
-	handleSubmit() {
-		console.log( [
-			this.props.data.name,
-			this.props.sessions[0].date,
-			this.state.time,
-			this.state.bookedTickets+' ticket(s)',
-			this.state.name,
-			this.state.phone
-			]
-		);
-		this.setState({
-			showModal: false,
-			time: null,
-			availableTickets: null,
-			bookedTickets: 0,
-			name: '',
-			phone: '',
-		})
-	}
-
-	handleCancel() {
-		this.setState({
-			showModal: false,
-			time: null,
-			availableTickets: null,
-			bookedTickets: 0,
-			name: '',
-			phone: '',
-		})
-	}
 
 	validateField(fieldName, value) {
 		let ticketValid = this.state.ticketValid;
@@ -111,23 +89,56 @@ class BookingCard extends Component {
 	validateForm() {
 		this.setState({
 			formValid: this.state.ticketValid &&
-						this.state.nameValid &&
-						this.state.phoneValid
+				this.state.nameValid &&
+				this.state.phoneValid
 		});
+	}
+
+	dropStates() {
+		this.setState({
+			showModal: false,
+			time: null,
+			availableTickets: null,
+			bookedTickets: 0,
+			name: '',
+			phone: '',
+			ticketValid: false,
+			nameValid: false,
+			phoneValid: false,
+			formValid: false
+		});
+	}
+
+	setOutput() {
+		return (
+			[
+				this.props.data.name,
+				this.props.sessions[0].date,
+				this.state.time,
+				this.state.bookedTickets+' ticket(s)',
+				this.state.name,
+				this.state.phone
+			]
+		);
+	}
+
+	static renderErrorBorder(err, enabled) {
+		return (err && enabled  ? 'has-error' : '');
 	}
 
 	renderTimeButtons() {
 		return this.props.sessions.map(item => {
 			if (item.availableTickets !== "0") {
 				return (
-					<Button
+					<ToggleButton
 						key={item.time}
-						className="mr-2"
-						size="sm"
+						value={item.time}
+						className="mr-2 rounded"
+						variant="outline-primary"
 						onClick={() => this.handleSessionSelection(item.time, item.availableTickets)}
 					>
 						{item.time}
-					</Button>
+					</ToggleButton>
 				);
 			} else {
 				return (
@@ -135,7 +146,9 @@ class BookingCard extends Component {
 						<Tooltip id="tooltip-disabled">No available tickets</Tooltip>
 					}>
 					  	<span className="d-inline-block">
-							<Button size="sm" className="mr-2" disabled style={{pointerEvents: 'none'}}>
+							<Button className="mr-2"
+									variant="outline-primary"
+									disabled style={{pointerEvents: 'none'}}>
 						  	{item.time}
 							</Button>
 					 	 </span>
@@ -147,12 +160,12 @@ class BookingCard extends Component {
 
 	render() {
 		return (
-			<div key={this.props.data.id}>
-				<Button className="float-right" variant="primary" onClick={this.handleShowModal}>
+			<React.Fragment key={this.props.data.id}>
+				<Button variant="primary" onClick={this.handleShowModal}>
 					Book
 				</Button>
 				<Modal show={this.state.showModal} size="lg">
-					<Modal.Body>
+					<Modal.Body className="bg-gray-light">
 						<img width={150} height={200}
 							 className="mr-3 float-left"
 							 src={this.props.data.imgURL}
@@ -161,39 +174,45 @@ class BookingCard extends Component {
 						<h5>{this.props.data.name}</h5>
 						<p>{this.props.data.description}</p>
 						<h6 className="pt-4">{this.props.sessions[0].date}</h6>
-						{this.renderTimeButtons()}
+						<ToggleButtonGroup type="radio" name="options">
+							{this.renderTimeButtons()}
+						</ToggleButtonGroup>
 						<small><br/>Tickets available: {this.state.availableTickets}</small>
-						<Form className="pt-5">
+						<Form className="pt-5" noValidate validated={this.state.formValid}>
 							<Form.Row>
-								<div className="col-lg-2 col-sm-12">
-									<small>Amount</small>
+								<Col lg="2" sm="12">
 									<Form.Control type="number" placeholder="Tickets"
 												  name="bookedTickets"
-												  value={this.state.bookedTickets}
+												  min="1" max={this.state.availableTickets}
+												  disabled={!this.state.availableTickets}
 												  onChange={this.handleUserInput}
+												  className={`${BookingCard.renderErrorBorder(!this.state.ticketValid, this.state.time)}`}
+												  required
 									/>
-								</div>
-								<div className="col-lg-5 col-sm-12">
-									<small>Your name</small>
+								</Col>
+								<Col lg="5" sm="12">
 									<Form.Control type="text" placeholder="Enter name"
 												  name="name"
-												  value={this.state.name}
+												  disabled={!this.state.time}
 												  onChange={this.handleUserInput}
+												  className={`${BookingCard.renderErrorBorder(!this.state.nameValid, this.state.time)}`}
+												  required
 									/>
-								</div>
-								<div className="col-lg-5 col-sm-12">
-									<small>Your phone</small>
-									<Form.Control type="tel" placeholder="+1-234-567-8901"
+								</Col>
+								<Col lg="5" sm="12">
+									<Form.Control type="tel" placeholder="Enter phone"
 												  name="phone"
-												  value={this.state.phone}
+												  disabled={!this.state.time}
 												  onChange={this.handleUserInput}
+												  className={`${BookingCard.renderErrorBorder(!this.state.phoneValid, this.state.time)}`}
+												  required
 									/>
-								</div>
+								</Col>
 							</Form.Row>
 						</Form>
 					</Modal.Body>
-					<Modal.Footer>
-						<Button className="float-left" variant="secondary" onClick={this.handleCancel}>
+					<Modal.Footer className="bg-gray-light">
+						<Button variant="secondary" onClick={this.handleCancel}>
 							Cancel
 						</Button>
 						<Button variant="primary" type="submit"
@@ -203,7 +222,7 @@ class BookingCard extends Component {
 						</Button>
 					</Modal.Footer>
 				</Modal>
-			</div>
+			</React.Fragment>
 		);
 	}
 }

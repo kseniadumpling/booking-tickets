@@ -9,6 +9,8 @@ import DatePicker from "react-datepicker/es";
 import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale, setDefaultLocale } from  "react-datepicker";
 import en from 'date-fns/locale/en-GB';
+import Container from "react-bootstrap/Container";
+import Col from "react-bootstrap/Col";
 registerLocale('en', en);
 setDefaultLocale('en');
 
@@ -36,23 +38,22 @@ class MovieList extends Component {
 	}
 
 	renderGenresDropdown() {
-		let res = MovieList.getGenresList().map(item => {
+		let res = MovieList.getGenresList().map((item, i) => {
 			return (
-				// TODO: add a key attribute
-				<Dropdown.Item as="button"
+				<Dropdown.Item key={i} as="button"
 					onClick={() => this.handleGenreSelection({item})}>
 					{item}
 				</Dropdown.Item>
 			);
 		});
 		res.push(
-			<div>
+			<React.Fragment key={res.length+1}>
 				<Dropdown.Divider/>
 				<Dropdown.Item as="button"
 					onClick={() => this.handleGenreSelection(null)}>
 					Show all
 				</Dropdown.Item>
-			</div>
+			</React.Fragment>
 		);
 		return res;
 	}
@@ -74,7 +75,7 @@ class MovieList extends Component {
 			let dateSession = MovieList.findDate(Demo.movieList[i].sessions, date);
 			// Requesting a movie card with proper genre and date
 			if ((!genre || Demo.movieList[i].genre === genre.item) && dateSession) {
-				movieArr.push(<MovieCard data={Demo.movieList[i]} date={dateSession}/>);
+				movieArr.push(<MovieCard key={i} data={Demo.movieList[i]} date={dateSession}/>);
 			}
 		}
 		if (!movieArr.length){
@@ -95,26 +96,29 @@ class MovieList extends Component {
 
 	render() {
 		return (
-			<div className="container p-lg-5 p-md-5">
-				<Row className="py-3">
-					<div className="col-lg-3 col-md-4 col-sm-5 pb-2">
-						<DatePicker
-							className="form-control"
-							dateFormat="MMMM d"
-							minDate={new Date('08/29/2019')}
-							maxDate={new Date('09/04/2019')}
-							selected={this.state.date}
-							onChange={this.handleDateChange}
-						/>
-					</div>
-					<div className="col-lg-3 col-md-4 col-sm-5 pb-2">
-						<DropdownButton id="dropdown-basic-button" title="Choose genre">
-							{this.renderGenresDropdown()}
-						</DropdownButton>
-					</div>
-				</Row>
-				{MovieList.renderMovieCards(this.state.genre, this.state.date)}
-			</div>
+			<Container className="p-lg-5 p-md-5">
+				<Col lg="10" md="12" sm="12" className="mx-auto">
+					<Row className="py-2 justify-content-center text-center">
+						<Col lg="3" md="4" sm="5" className="pb-2">
+							<DatePicker
+								className="form-control btn btn-primary btn-size"
+								type="button"
+								dateFormat="MMMM d"
+								minDate={new Date('08/29/2019')}
+								maxDate={new Date('09/04/2019')}
+								selected={this.state.date}
+								onChange={this.handleDateChange}
+							/>
+						</Col>
+						<Col lg="3" md="4" sm="5" className="pb-2">
+							<DropdownButton title="Choose genre"  block>
+								{this.renderGenresDropdown()}
+							</DropdownButton>
+						</Col>
+					</Row>
+					{MovieList.renderMovieCards(this.state.genre, this.state.date)}
+				</Col>
+			</Container>
 		);
 	}
 }

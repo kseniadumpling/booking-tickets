@@ -2,6 +2,7 @@
   "name": "booking-tickets",
   "version": "0.1.0",
   "private": true,
+  "homepage" : "http://kseniadumpling.github.io/booking-tickets",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "react": "^16.9.0",
