@@ -4,10 +4,10 @@ import Modal from "react-bootstrap/Modal";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import Form from "react-bootstrap/Form";
-import './BookingCard.css';
 import Col from "react-bootstrap/Col";
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import ToggleButton from "react-bootstrap/ToggleButton";
+import './BookingCard.css';
 
 class BookingCard extends Component {
 	constructor(props) {
@@ -134,7 +134,7 @@ class BookingCard extends Component {
 						key={item.time}
 						value={item.time}
 						className="mr-2 rounded"
-						variant="outline-primary"
+						variant="outline-info"
 						onClick={() => this.handleSessionSelection(item.time, item.availableTickets)}
 					>
 						{item.time}
@@ -147,7 +147,7 @@ class BookingCard extends Component {
 					}>
 					  	<span className="d-inline-block">
 							<Button className="mr-2"
-									variant="outline-primary"
+									variant="outline-info"
 									disabled style={{pointerEvents: 'none'}}>
 						  	{item.time}
 							</Button>
@@ -161,7 +161,7 @@ class BookingCard extends Component {
 	render() {
 		return (
 			<React.Fragment key={this.props.data.id}>
-				<Button variant="primary" onClick={this.handleShowModal}>
+				<Button variant="info" onClick={this.handleShowModal}>
 					Book
 				</Button>
 				<Modal show={this.state.showModal} size="lg">
@@ -180,7 +180,7 @@ class BookingCard extends Component {
 						<small><br/>Tickets available: {this.state.availableTickets}</small>
 						<Form className="pt-5" noValidate validated={this.state.formValid}>
 							<Form.Row>
-								<Col lg="2" sm="12">
+								<Col lg="2" sm="12" className="pb-2">
 									<Form.Control type="number" placeholder="Tickets"
 												  name="bookedTickets"
 												  min="1" max={this.state.availableTickets}
@@ -190,7 +190,7 @@ class BookingCard extends Component {
 												  required
 									/>
 								</Col>
-								<Col lg="5" sm="12">
+								<Col lg="5" sm="12" className="pb-2">
 									<Form.Control type="text" placeholder="Enter name"
 												  name="name"
 												  disabled={!this.state.time}
@@ -199,7 +199,7 @@ class BookingCard extends Component {
 												  required
 									/>
 								</Col>
-								<Col lg="5" sm="12">
+								<Col lg="5" sm="12" className="pb-2">
 									<Form.Control type="tel" placeholder="Enter phone"
 												  name="phone"
 												  disabled={!this.state.time}
@@ -215,7 +215,7 @@ class BookingCard extends Component {
 						<Button variant="secondary" onClick={this.handleCancel}>
 							Cancel
 						</Button>
-						<Button variant="primary" type="submit"
+						<Button variant="info" type="submit"
 								disabled={!this.state.formValid}
 								onClick={this.handleSubmit}>
 							Submit

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import MovieCard from './MovieCard';
 import Demo from '../demo/demoList.json';
+import Container from "react-bootstrap/Container";
+import Col from "react-bootstrap/Col";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Row from "react-bootstrap/Row";
@@ -9,8 +11,6 @@ import DatePicker from "react-datepicker/es";
 import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale, setDefaultLocale } from  "react-datepicker";
 import en from 'date-fns/locale/en-GB';
-import Container from "react-bootstrap/Container";
-import Col from "react-bootstrap/Col";
 registerLocale('en', en);
 setDefaultLocale('en');
 
@@ -40,7 +40,7 @@ class MovieList extends Component {
 	renderGenresDropdown() {
 		let res = MovieList.getGenresList().map((item, i) => {
 			return (
-				<Dropdown.Item key={i} as="button"
+				<Dropdown.Item key={i} as="button" className="btn-info"
 					onClick={() => this.handleGenreSelection({item})}>
 					{item}
 				</Dropdown.Item>
@@ -49,7 +49,7 @@ class MovieList extends Component {
 		res.push(
 			<React.Fragment key={res.length+1}>
 				<Dropdown.Divider/>
-				<Dropdown.Item as="button"
+				<Dropdown.Item as="button" className="btn-info"
 					onClick={() => this.handleGenreSelection(null)}>
 					Show all
 				</Dropdown.Item>
@@ -101,7 +101,7 @@ class MovieList extends Component {
 					<Row className="py-2 justify-content-center text-center">
 						<Col lg="3" md="4" sm="5" className="pb-2">
 							<DatePicker
-								className="form-control btn btn-primary btn-size"
+								className="form-control btn btn-info btn-size"
 								type="button"
 								dateFormat="MMMM d"
 								minDate={new Date('08/29/2019')}
@@ -111,7 +111,7 @@ class MovieList extends Component {
 							/>
 						</Col>
 						<Col lg="3" md="4" sm="5" className="pb-2">
-							<DropdownButton title="Choose genre"  block>
+							<DropdownButton title="Choose genre" variant="info">
 								{this.renderGenresDropdown()}
 							</DropdownButton>
 						</Col>
